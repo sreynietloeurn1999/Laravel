@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('Firstname');
             $table->string('Lastname');
-            $table->integer('Age');
+            $table->integer('Age')->nullable();
 
             $table->timestamps();
         });

@@ -21,5 +21,10 @@ Route::get('student/{name}', 'StudentsController@searchStudent');
 Route::get('subject', 'SubjectsController@showSubject')->name('subject'); 
 Route::get('data', 'StuController@getStudentData'); 
 
+Route::get('showForm', 'StuController@showFormStudent'); 
+Route::post('insertData', 'StuController@addStudent'); 
+Route::get('updateform','StuController@showEditForm')->name('editfrome'); 
+Route::put('edit/{id}','StuController@update')->name('update'); 
+Route::get('delete/{id}','StuController@delete')->name('delete');
    
 
