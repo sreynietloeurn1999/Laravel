@@ -1,0 +1,74 @@
+// all data students
+
+<table>
+    <a href="{{route('student.create')}}">Add Student</a>
+    <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+        <th>Action</th>
+    </tr>
+    @foreach ($student as $eachStudent)
+        <tr>
+        <td>{{$eachStudent -> id}}</td>
+        <td>{{$eachStudent -> Firstname}}</td>
+        <td>{{$eachStudent -> Lastname}}</td>
+        <td>{{$eachStudent -> Age}}</td>
+        <td>
+            {{-- <a  href="{{route('student.destroy',$eachStudent -> id)}}">Delete</a> --}}
+            <a href="{{route('student.show',$eachStudent -> id)}}">edit</a>
+            
+        </td>
+        <td>
+                <form action="{{route('student.destroy',$eachStudent -> id)}}" method="POST"><button onclick="return confirm('Are you sure?')">delete</button>
+                    @method('delete')
+                    @csrf
+                </form>
+        </td>
+        </tr>
+    @endforeach
+</table>
+
+
+// student form
+
+@if ($errors -> any())
+<ul>
+    @foreach ($errors -> all() as $error)
+<li>{{$error}}</li>
+        
+    @endforeach
+</ul>
+    
+@endif
+<form action="{{route('student.store')}}" method="POST">
+    @csrf
+    
+<input type="text" name="fname" >
+<input type="text" name="lname"  > 
+  
+<input type="number" name="age" >
+
+    <button type="submit">Save</button>
+</form>
+
+
+//update form
+
+<form action="{{route('student.update',$student->id)}}" method="POST">
+        @method('PUT')
+        @csrf
+        
+       <input type="text" name="fname" value="{{$student ->Firstname}}" >
+        
+        <input type="text" name="lname" value="{{$student ->Lastname}}"  >
+      
+        <input type="number" name="age" value="{{ $student ->Age}}" >
+    
+        <button type="submit">update</button>
+    </form> 
+
+    
+
+//
